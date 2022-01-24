@@ -36,6 +36,25 @@ manager = Manager()
 
 
 print("Reconnect to HUB script - By David Yair [E030331]")
+print("Checking for args")
+if len(sys.argv) > 1:
+    print("Args received - checking if it's one of the help requesting args: \"-h|--help\"")
+    args_lowered = [x.strip().lower() for x in sys.argv]
+    if "-h" in args_lowered or "--help" in args_lowered:
+        print("Printing help and existing with 0")
+        print("Usage: \n  Just execute the file")
+        print("Envs that can be set: ")
+        print("  PHIDGET_MANAGER_EXE_PROCESS_NAME : [string] Process name of phidget manager executable to be killed during run. Cannot have it running while this program is running.")
+        print("  SLEEP_BETWEEN_LOOPS_SECONDS : [Positive integer] Sleep seconds between loops of checking hub's state and powering it on incase it's not")
+        print("  PHIDGET_HUB_SERIAL_NUMBER : [Positive integer] Serial number of the hub")
+        print("  PHIDGET_HUB_PORT_NUMBER : [Positive integer] Port of hub to connect to. Default: 1")
+        print("  PHIDGET_HUB_CHANNEL_NUMBER : [Positive integer] Channel to connect with. Default: 0")
+        print("  PHIDGET_HUB_WAIT_FOR_ATTACHMENTS_MILLISECONDS_TIMEOUT : [Positive integer] Wait for device attaching to USB timeout milliseconds.")
+        print("  PHIDGET_HUB_POWER_ON_DUTY_CYCLE : [Positive integer] Value to pass in order to power hub on")
+        print("  PHIDGET_HUB_POWER_OFF_DUTY_CYCLE : [Positive integer] Value to pass in order to power hub off")
+        print("")
+        sys.exit(0)
+
 
 def get_running_process(processName):
     '''
@@ -205,6 +224,7 @@ def close_manager_connection():
 def main():
     reset_log_file()
     configure_logger()
+    logger.info("\nReconnect to HUB script - By David Yair [E030331]\n")
     validate_envs()
     init_manager_obj()
     logger.info("Looping forever")
