@@ -6,6 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# Exe
+*.exe
+
+# PyCharm
+.idea/
+
+# Log
+*.log
+
 # Distribution / packaging
 .Python
 build/
