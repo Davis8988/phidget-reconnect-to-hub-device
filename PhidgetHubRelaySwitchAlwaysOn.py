@@ -224,6 +224,7 @@ def close_manager_connection():
 def main():
     reset_log_file()
     configure_logger()
+    logger.info("\nReconnect to HUB script - By David Yair [E030331]\n")
     validate_envs()
     init_manager_obj()
     logger.info("Looping forever")
